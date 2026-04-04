@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pandas
+numpy
+scipy
+statsmodels
+finance-datareader
+openpyxl
+requests
+beautifulsoup4
+jinja2
+python-multipart
+tqdm
+matplotlib

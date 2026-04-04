@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealV2 Investment Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css?v=3">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>RealV2 Strategy Dashboard</h1>
+            <div class="controls">
+                <button id="updateBtn" class="premium-btn">Update Data</button>
+            </div>
+        </header>
+
+        <section class="overview grid">
+            <div class="card glass">
+                <h3>Cumulative Returns</h3>
+                <canvas id="returnsChart"></canvas>
+            </div>
+            <div class="card glass">
+                <h3>Current Allocation</h3>
+                <canvas id="portfolioChart"></canvas>
+            </div>
+        </section>
+
+        <section class="calculator glass">
+            <h3>Investment Calculator</h3>
+            <div class="calc-inputs" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <input type="date" id="calcDate" class="premium-date-input">
+                <input type="number" id="investAmount" placeholder="Amount (KRW)" value="10000000">
+                <select id="calcMode">
+                    <option value="both">+/- 5% Tolerance</option>
+                    <option value="plus">Positive Only (+5%)</option>
+                    <option value="minus">Negative Only (-5%)</option>
+                </select>
+                <button id="calcBtn" class="premium-btn">Calculate Shares</button>
+            </div>
+            <div id="calcResults" class="calc-results-hidden">
+                <div class="calc-header"></div>
+                <div class="calc-grid">
+                    <div class="calc-table-wrapper">
+                        <table id="calcTable">
+                            <thead>
+                                <tr>
+                                    <th>Asset Code</th>
+                                    <th>Asset Name</th>
+                                    <th>Shares</th>
+                                    <th>Est. Capital</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="calc-chart-wrapper">
+                        <canvas id="calcPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portfolio-list glass">
+            <div class="section-header">
+                <h3>Holdings Detail</h3>
+                <div class="history-controls">
+                    <input type="date" id="historyDate" min="2016-01-01">
+                    <button id="historyBtn" class="secondary-btn">View History</button>
+                </div>
+            </div>
+            <table id="holdingsTable">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Weight</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </div>
+    <script src="/static/app.js?v=3"></script>
+</body>
+
+</html>
