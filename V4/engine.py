@@ -316,7 +316,15 @@ class RealV2Engine:
             kospi_list = [str(c).strip() for c in kospi_list if str(c).strip()]
             kospi_list = [c.zfill(6) if c.isdigit() else c for c in kospi_list]
         else:
-            kospi_list = []
+            # Fallback to the latest available list date that is before or equal to the target date
+            past_dates = kospi50_df.index[kospi50_df.index <= date]
+            if len(past_dates) > 0:
+                fallback_date = past_dates.max()
+            else:
+                fallback_date = kospi50_df.index.max()
+            kospi_list = kospi50_df.loc[fallback_date].dropna().unique().tolist()
+            kospi_list = [str(c).strip() for c in kospi_list if str(c).strip()]
+            kospi_list = [c.zfill(6) if c.isdigit() else c for c in kospi_list]
 
         # 2. Daily returns for MDP
         all_rets = {}
